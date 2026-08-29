@@ -1,4 +1,23 @@
 @import "tailwindcss";
 
+/* Figma 공통 색상 토큰 */
+:root {
+  --Main-Main1: #DBBEA6;
+  --Main-Main80: #E2CBB8;
+  --Main-Main60: #E9D8CA;
+  --Main-Main40: #F1E5DB;
+  --Main-Main20: #F8F2ED;
+  --Sub1: #7D5C42;
+}
+
+@theme {
+  --color-main-1: var(--Main-Main1);
+  --color-main-80: var(--Main-Main80);
+  --color-main-60: var(--Main-Main60);
+  --color-main-40: var(--Main-Main40);
+  --color-main-20: var(--Main-Main20);
+  --color-sub-1: var(--Sub1);
+}
+
 html, body, #root { min-height: 100%; }
 body { margin: 0; min-width: 320px; font-family: Arial, "Apple SD Gothic Neo", sans-serif; }
