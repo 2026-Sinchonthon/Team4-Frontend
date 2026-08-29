@@ -1,0 +1,11 @@
+.app {
+  display: grid;
+  place-content: center;
+  min-height: 100vh;
+  padding: 2rem;
+  text-align: center;
+}
+
+h1 { margin: 0; }
+
+p { color: #64748b; }
