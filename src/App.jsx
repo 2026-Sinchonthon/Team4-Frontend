@@ -1,6 +1,15 @@
 import { NavigationBar } from './shared/ui/index.js'
 import { GroupFeedPage } from './pages/GroupFeedPage.jsx'
 import { NetworkingPage } from './pages/networking/NetworkingPage.jsx'
+<<<<<<< HEAD
+=======
+import { GroupEditPage } from './pages/GroupEditPage.jsx'
+import { GroupDetailPage } from './pages/GroupDetailPage.jsx'
+import { MyPage } from './pages/MyPage.jsx'
+import { MyPageEdit } from './pages/MyPageEdit.jsx'
+import { AuthPage } from './pages/AuthPage.jsx'
+
+>>>>>>> ed91b3b9cb7c6f8a9f87fcac271871baf6e41e85
 import logo from './assets/navigation/logo.svg'
 import homeIcon from './assets/navigation/home.svg'
 import groupFeedIcon from './assets/navigation/group-feed.svg'
@@ -61,9 +70,46 @@ function LandingPage(){
 }
 function App(){
   const path = window.location.pathname
+<<<<<<< HEAD
   if(path === '/groups') return <GroupFeedPage />
   if(path === '/networking') return <NetworkingPage />
   if(path === '/home') return <HomeApp />
   return <LandingPage />
+=======
+
+  if (path === '/signup' || path === '/onboarding') {
+    return <AuthPage />
+  }
+
+  if (path === '/groups/new') {
+    return <GroupEditPage mode="create" />
+  }
+
+  if (/^\/groups\/[^/]+\/edit$/.test(path)) {
+    return <GroupEditPage />
+  }
+
+  if (/^\/groups\/[^/]+$/.test(path)) {
+    return <GroupDetailPage />
+  }
+
+  if (path === '/groups') {
+    return <GroupFeedPage />
+  }
+
+  if (path === '/networking') {
+    return <NetworkingPage />
+  }
+
+  if (path === '/mypage/edit') {
+    return <MyPageEdit />
+  }
+
+  if (path === '/mypage') {
+    return <MyPage />
+  }
+
+  return <HomeApp />
+>>>>>>> ed91b3b9cb7c6f8a9f87fcac271871baf6e41e85
 }
 export default App
