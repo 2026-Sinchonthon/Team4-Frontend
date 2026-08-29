@@ -6,6 +6,7 @@ import { GroupEditPage } from './pages/GroupEditPage.jsx'
 import { GroupDetailPage } from './pages/GroupDetailPage.jsx'
 import { MyPage } from './pages/MyPage.jsx'
 import { MyPageEdit } from './pages/MyPageEdit.jsx'
+import { AuthPage } from './pages/AuthPage.jsx'
 
 import logo from './assets/navigation/logo.svg'
 import homeIcon from './assets/navigation/home.svg'
@@ -294,6 +295,10 @@ function HomeApp() {
 
 function App() {
   const path = window.location.pathname
+
+  if (path === '/signup' || path === '/onboarding') {
+    return <AuthPage />
+  }
 
   if (path === '/groups/new') {
     return <GroupEditPage mode="create" />

@@ -9,6 +9,7 @@ import githubIcon from '../assets/mypage/github.png'
 import groupImage from '../assets/mypage/raw-05.png'
 import heroImage from '../assets/mypage/cover.svg'
 import portfolioImage from '../assets/mypage/raw-11.png'
+import { loadProfileImages } from '../shared/profileImages.js'
 
 const navItems = [
   { label: '홈', href: '/', icon: <img src={homeIcon} alt="" /> },
@@ -42,12 +43,14 @@ function GroupSection({ title, groups }) {
 }
 
 export function MyPage() {
+  const savedImages = loadProfileImages({ cover: heroImage, profile: profileImage })
+
   return <div className="min-h-screen bg-white font-['Pretendard','Apple_SD_Gothic_Neo',sans-serif] text-[#171617]">
     <NavigationBar brand={<img className="size-full object-contain" src={logo} alt="신촌링크" />} items={navItems} />
     <main className="ml-[300px] min-h-screen pb-16">
-      <div className="relative h-[408px] overflow-hidden bg-[#E2CBB8]"><img className="size-full object-cover" src={heroImage} alt="프로필 커버" /></div>
+      <div className="relative h-[408px] overflow-hidden bg-[#E2CBB8]"><img className="size-full object-cover" src={savedImages.cover} alt="프로필 커버" /></div>
       <div className="mx-auto -mt-[113px] max-w-[1155px] px-7">
-        <img className="relative size-[200px] rounded-full border-4 border-white bg-[#DBBEA6] object-cover" src={profileImage} alt="김신촌 프로필" />
+        <img className="relative size-[200px] rounded-full border-4 border-white bg-[#DBBEA6] object-cover" src={savedImages.profile} alt="김신촌 프로필" />
         <div className="mt-7 px-7">
           <div className="flex items-center gap-2 text-2xl" aria-label="외부 프로필"><a href="https://github.com" aria-label="GitHub"><img className="size-8 object-contain" src={githubIcon} alt="" /></a><a href="https://linkedin.com" aria-label="LinkedIn" className="font-bold text-[#2867B2]">in</a></div>
           <div className="mt-3 flex items-center gap-4"><h1 className="text-[28px] font-semibold leading-[1.2]">김신촌</h1><span className="rounded-full bg-[#7D5C42] px-4 py-1 text-lg font-semibold text-[#F8F2ED]">홍익대학교 3학년</span></div>

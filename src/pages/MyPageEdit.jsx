@@ -13,6 +13,7 @@ import portfolioImage from '../assets/mypage/raw-11.png'
 import penIcon from '../assets/mypage/edit-pen.svg'
 import closeIcon from '../assets/mypage/edit-close.svg'
 import plusIcon from '../assets/Navigationbar_plus.svg'
+import { loadProfileImages, readImageFile, saveProfileImages } from '../shared/profileImages.js'
 
 const navItems = [
   { label: '홈', href: '/', icon: <img src={homeIcon} alt="" /> },
@@ -42,8 +43,26 @@ function GroupSection({ title }) {
 const inputClass = 'w-full rounded-lg border border-transparent bg-transparent text-lg leading-[1.4] text-[#545454] outline-none transition focus:border-[#DBBEA6] focus:bg-white focus:px-3 focus:py-2'
 
 export function MyPageEdit() {
+  const [profileImages, setProfileImages] = useState(() => loadProfileImages({ cover: heroImage, profile: profileImage }))
+  const [imageError, setImageError] = useState('')
   const [portfolioPreview, setPortfolioPreview] = useState(portfolioImage)
   const fileInputRef = useRef(null)
+  const coverInputRef = useRef(null)
+  const profileInputRef = useRef(null)
+
+  const handleProfileImageChange = async (event, type) => {
+    const file = event.target.files?.[0]
+    if (!file) return
+
+    try {
+      const preview = await readImageFile(file)
+      setProfileImages((current) => ({ ...current, [type]: preview }))
+      setImageError('')
+    } catch (error) {
+      setImageError(error.message)
+      event.target.value = ''
+    }
+  }
   const handlePortfolioChange = (event) => {
     const file = event.target.files?.[0]
     if (!file) return
@@ -57,16 +76,35 @@ export function MyPageEdit() {
   }
   const handleSubmit = (event) => {
     event.preventDefault()
-    window.location.href = '/mypage'
+    try {
+      saveProfileImages(profileImages)
+      window.location.href = '/mypage'
+    } catch {
+      setImageError('이미지를 저장하지 못했어요. 더 작은 이미지를 선택해 주세요.')
+    }
   }
 
   return <div className="min-h-screen bg-white font-['Pretendard','Apple_SD_Gothic_Neo',sans-serif] text-[#171617]">
     <NavigationBar brand={<img className="size-full object-contain" src={logo} alt="신촌링크" />} items={navItems} />
     <main className="ml-[300px] min-h-screen pb-16">
-      <div className="h-[408px] overflow-hidden bg-[#E2CBB8]"><img className="size-full object-cover" src={heroImage} alt="프로필 커버" /></div>
+      <div className="group relative h-[408px] overflow-hidden bg-[#E2CBB8]">
+        <img className="size-full object-cover" src={profileImages.cover} alt="프로필 커버 미리보기" />
+        <div className="absolute inset-0 bg-black/0 transition group-hover:bg-black/15" />
+        <input ref={coverInputRef} className="sr-only" type="file" accept="image/*" onChange={(event) => handleProfileImageChange(event, 'cover')} />
+        <button className="absolute bottom-6 right-8 rounded-lg bg-white/95 px-5 py-3 text-base font-semibold text-[#545454] shadow-md transition hover:bg-white focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#7D5C42]" type="button" onClick={() => coverInputRef.current?.click()}>
+          배경 사진 변경
+        </button>
+      </div>
       <form className="mx-auto -mt-[113px] max-w-[1155px] px-7" onSubmit={handleSubmit}>
-        <img className="relative size-[200px] rounded-full border-4 border-white object-cover" src={profileImage} alt="김신촌 프로필" />
+        <div className="group relative size-[200px]">
+          <img className="size-full rounded-full border-4 border-white bg-[#DBBEA6] object-cover" src={profileImages.profile} alt="김신촌 프로필 미리보기" />
+          <input ref={profileInputRef} className="sr-only" type="file" accept="image/*" onChange={(event) => handleProfileImageChange(event, 'profile')} />
+          <button className="absolute inset-1 flex items-center justify-center rounded-full bg-black/0 text-sm font-semibold text-transparent transition group-hover:bg-black/45 group-hover:text-white focus-visible:bg-black/45 focus-visible:text-white focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#7D5C42]" type="button" onClick={() => profileInputRef.current?.click()} aria-label="프로필 사진 변경">
+            프로필 사진 변경
+          </button>
+        </div>
         <div className="mt-7 px-7">
+          {imageError && <p className="mb-4 rounded-lg bg-red-50 px-4 py-3 text-sm font-semibold text-red-600" role="alert">{imageError}</p>}
           <div className="flex items-center gap-2 text-2xl"><img className="size-8 object-contain" src={githubIcon} alt="GitHub" /><span className="font-bold text-[#2867B2]">in</span></div>
           <div className="mt-3 flex items-center gap-4"><div className="flex items-center gap-2"><img className="size-9" src={penIcon} alt="" /><input className="w-32 text-[28px] font-semibold text-[#858485] outline-none" name="name" defaultValue="김신촌" aria-label="이름" /></div><span className="rounded-full bg-[#7D5C42] px-4 py-1 text-lg font-semibold text-[#F8F2ED]">홍익대학교 3학년</span></div>
           <input className="mt-3 w-full text-[22px] font-bold text-[#858485] outline-none" name="role" defaultValue="시각 디자인과 | UXUI Designer" aria-label="전공 및 직무" />
