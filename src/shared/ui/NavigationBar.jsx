@@ -23,8 +23,23 @@ export function NavigationBar({ brand, items, onNavigate, className = '' }) {
             onClick={(event) => handleNavigation(event, href)}
             className={`flex h-12 w-[244px] items-center gap-4 rounded-lg py-3 pl-4 pr-5 text-lg font-semibold leading-none transition-colors ${isActive ? 'bg-[#F1E5DB] text-[#7D5C42]' : 'text-[#858485] hover:bg-[#F1E5DB]/60'}`}
           >
-            <span style={{ width: iconWidth }} className="flex h-8 shrink-0 items-center justify-center [&>img]:size-full [&>img]:object-contain">
-              {icon}
+            <span style={{ width: iconWidth }} className="flex h-8 shrink-0 items-center justify-center">
+              {icon?.props?.src ? (
+                <span
+                  aria-hidden="true"
+                  className="size-full bg-current"
+                  style={{
+                    WebkitMaskImage: `url("${icon.props.src}")`,
+                    maskImage: `url("${icon.props.src}")`,
+                    WebkitMaskPosition: 'center',
+                    maskPosition: 'center',
+                    WebkitMaskRepeat: 'no-repeat',
+                    maskRepeat: 'no-repeat',
+                    WebkitMaskSize: 'contain',
+                    maskSize: 'contain',
+                  }}
+                />
+              ) : icon}
             </span>
             <span>{label}</span>
           </a>
