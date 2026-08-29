@@ -1,6 +1,8 @@
 const tones = {
   primary: 'bg-[#F0E9E3] text-[#7D5C42]',
   solid: 'bg-[#7D5C42] text-[#F8F2ED]',
+  inactive: 'bg-[#DEDEDE] text-[#858485]',
+  muted: 'bg-[#858485] text-[#DEDEDE]',
   success: 'bg-emerald-50 text-emerald-700',
   warning: 'bg-amber-50 text-amber-700',
   neutral: 'bg-stone-100 text-stone-500',
