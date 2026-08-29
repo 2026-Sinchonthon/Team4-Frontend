@@ -4,6 +4,8 @@ import { GroupFeedPage } from './pages/GroupFeedPage.jsx'
 import { NetworkingPage } from './pages/networking/NetworkingPage.jsx'
 import { GroupEditPage } from './pages/GroupEditPage.jsx'
 import { GroupDetailPage } from './pages/GroupDetailPage.jsx'
+import { MyPage } from './pages/MyPage.jsx'
+import { MyPageEdit } from './pages/MyPageEdit.jsx'
 
 import logo from './assets/navigation/logo.svg'
 import homeIcon from './assets/navigation/home.svg'
@@ -65,8 +67,8 @@ const Arrow = () => (
 function Card({ title, children, href }) {
   return (
     <section className="rounded-[20px] border border-[#F4F4F4] bg-white px-10 py-5">
-      <header className="mb-6 flex justify-between">
-        <h2 className="text-xl font-bold">{title}</h2>
+      <header className="mb-7 flex justify-between">
+        <h2 className="text-xl font-bold">{href ? <a href={href}>{title}</a> : title}</h2>
 
         {href ? (
           <a href={href} aria-label={`${title} 더 보기`}>
@@ -150,28 +152,38 @@ function HomeApp() {
           </header>
 
           <div className="grid grid-cols-[506px_1fr] gap-4">
-            <Card title="내 프로필">
-              <div className="flex gap-6">
+            <Card title="내 프로필" href="/mypage">
+              <div className="flex items-stretch gap-6">
                 <img
                   src={p1}
-                  alt=""
-                  className="size-[134px] shrink-0 rounded-full object-cover"
+                  alt="김신촌 프로필"
+                  className="size-[134px] shrink-0 rounded-full bg-[#DBBEA6] object-cover"
                 />
 
-                <div>
-                  <b className="text-lg">김신촌</b>
-
-                  <span className="ml-2 rounded-full bg-[#F8F2ED] px-4 py-1 text-xs text-[#7D5C42]">
-                    홍익대학교
-                  </span>
-
-                  <p className="mt-4 text-xs text-[#858485]">
-                    시각 디자인과 | UXUI Designer
+                <div className="flex min-w-0 flex-1 flex-col justify-center gap-4">
+                  <p className="w-full rounded-br-[20px] rounded-tl-xl rounded-tr-[20px] bg-[#7D5C42] px-4 py-1 text-center text-xs font-semibold leading-[1.6] whitespace-nowrap text-[#F8F2ED]">
+                    같이 디자인 작업해용.. 주로 UXUI 디자인 합니다.
                   </p>
 
-                  <p className="mt-3 text-xs">
-                    Figma | Photoshop
-                  </p>
+                  <div className="flex flex-col gap-3">
+                    <div className="flex items-center gap-2">
+                      <b className="text-lg leading-[1.4]">김신촌</b>
+
+                      <span className="rounded-full bg-[#F8F2ED] px-4 py-1 text-sm font-semibold leading-[1.5] text-[#7D5C42]">
+                        홍익대학교
+                      </span>
+                    </div>
+
+                    <div className="flex flex-col gap-2 text-sm font-semibold leading-[1.5]">
+                      <p className="text-[#858485]">
+                        시각 디자인과 | UXUI Designer
+                      </p>
+
+                      <p className="text-[#545454]">
+                        Figma | Photoshop
+                      </p>
+                    </div>
+                  </div>
                 </div>
               </div>
             </Card>
@@ -192,7 +204,7 @@ function HomeApp() {
             </Card>
           </div>
 
-          <Card title="네트워킹">
+          <Card title="네트워킹" href="/networking">
             <div className="grid grid-cols-3 gap-8">
               {members.map((member, i) => (
                 <div className="flex gap-5" key={member}>
@@ -301,6 +313,14 @@ function App() {
 
   if (path === '/networking') {
     return <NetworkingPage />
+  }
+
+  if (path === '/mypage/edit') {
+    return <MyPageEdit />
+  }
+
+  if (path === '/mypage') {
+    return <MyPage />
   }
 
   return <HomeApp />
