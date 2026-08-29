@@ -1,4 +1,35 @@
-export function NavigationBar({ brand, items, rightSlot, onNavigate, className = '' }) {
-  const handleNavigation = (event, href) => { if (onNavigate) { event.preventDefault(); onNavigate(href) } }
-  return <header className={`sticky top-0 z-10 w-full border-b border-stone-200 bg-white/95 backdrop-blur ${className}`}><div className="mx-auto flex h-[72px] w-[min(1180px,calc(100%-48px))] items-stretch gap-10 max-sm:h-[62px] max-sm:w-[calc(100%-32px)] max-sm:gap-5"><a className="flex shrink-0 items-center text-xl font-extrabold tracking-tight text-stone-800" href="/" aria-label="홈으로 이동" onClick={(event) => handleNavigation(event, '/')}>{brand}</a><nav className="flex items-stretch gap-7 overflow-x-auto max-sm:gap-4" aria-label="주요 메뉴">{items.map(({ label, href, icon, isActive }) => <a key={href} href={href} aria-current={isActive ? 'page' : undefined} onClick={(event) => handleNavigation(event, href)} className={`relative flex shrink-0 items-center gap-1.5 whitespace-nowrap text-sm font-semibold ${isActive ? 'font-extrabold text-[#7D5C42] after:absolute after:inset-x-0 after:bottom-0 after:h-0.5 after:bg-[#7D5C42]' : 'text-stone-500 hover:text-stone-800'}`}>{icon && <span className="size-[17px] [&>img]:size-full">{icon}</span>}{label}</a>)}</nav>{rightSlot && <div className="ml-auto flex items-center gap-2.5 whitespace-nowrap max-sm:hidden">{rightSlot}</div>}</div></header>
+/**
+ * 피그마 노드 41:1661을 기준으로 한 공통 좌측 네비게이션입니다.
+ * 화면별로 `items`의 isActive만 변경해 사용합니다.
+ */
+export function NavigationBar({ brand, items, onNavigate, className = '' }) {
+  const handleNavigation = (event, href) => {
+    if (!onNavigate) return
+    event.preventDefault()
+    onNavigate(href)
+  }
+
+  return (
+    <aside className={`fixed inset-y-0 left-0 z-10 flex w-[300px] flex-col gap-10 rounded-r-[20px] bg-[#F8F2ED] px-7 py-10 font-['Pretendard','Apple_SD_Gothic_Neo',sans-serif] shadow-[0_15px_40px_rgba(206,206,206,0.08)] ${className}`}>
+      <a className="block size-auto h-8 w-[132px]" href="/" aria-label="홈으로 이동" onClick={(event) => handleNavigation(event, '/')}>
+        {brand}
+      </a>
+      <nav className="flex w-[244px] flex-col gap-7" aria-label="주요 메뉴">
+        {items.map(({ label, href, icon, iconWidth = 32, isActive }) => (
+          <a
+            key={href}
+            href={href}
+            aria-current={isActive ? 'page' : undefined}
+            onClick={(event) => handleNavigation(event, href)}
+            className={`flex h-12 w-[244px] items-center gap-4 rounded-lg py-3 pl-4 pr-5 text-lg font-semibold leading-none transition-colors ${isActive ? 'bg-[#F1E5DB] text-[#7D5C42]' : 'text-[#858485] hover:bg-[#F1E5DB]/60'}`}
+          >
+            <span style={{ width: iconWidth }} className="flex h-8 shrink-0 items-center justify-center [&>img]:size-full [&>img]:object-contain">
+              {icon}
+            </span>
+            <span>{label}</span>
+          </a>
+        ))}
+      </nav>
+    </aside>
+  )
 }
