@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { Badge, Button, NavigationBar } from "../shared/ui/index.js";
-import logo from "../assets/navigation/logo.svg";
+import logo from "../assets/auth-logo.svg";
 import homeIcon from "../assets/navigation/home.svg";
 import groupFeedIcon from "../assets/navigation/group-feed.svg";
 import networkingIcon from "../assets/navigation/networking.svg";

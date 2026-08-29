@@ -8,7 +8,7 @@ import { MyPage } from './pages/MyPage.jsx'
 import { MyPageEdit } from './pages/MyPageEdit.jsx'
 import { AuthPage } from './pages/AuthPage.jsx'
 
-import logo from './assets/navigation/logo.svg'
+import logo from './assets/auth-logo.svg'
 import homeIcon from './assets/navigation/home.svg'
 import groupFeedIcon from './assets/navigation/group-feed.svg'
 import networkingIcon from './assets/navigation/networking.svg'
