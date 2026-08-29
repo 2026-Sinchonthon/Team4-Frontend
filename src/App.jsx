@@ -1,20 +1,17 @@
 import { NavigationBar } from './shared/ui/index.js'
 import { GroupFeedPage } from './pages/GroupFeedPage.jsx'
 import { NetworkingPage } from './pages/networking/NetworkingPage.jsx'
-<<<<<<< HEAD
-=======
 import { GroupEditPage } from './pages/GroupEditPage.jsx'
 import { GroupDetailPage } from './pages/GroupDetailPage.jsx'
 import { MyPage } from './pages/MyPage.jsx'
 import { MyPageEdit } from './pages/MyPageEdit.jsx'
 import { AuthPage } from './pages/AuthPage.jsx'
-
->>>>>>> ed91b3b9cb7c6f8a9f87fcac271871baf6e41e85
 import logo from './assets/navigation/logo.svg'
 import homeIcon from './assets/navigation/home.svg'
 import groupFeedIcon from './assets/navigation/group-feed.svg'
 import networkingIcon from './assets/navigation/networking.svg'
 import mypageIcon from './assets/navigation/mypage.svg'
+import authLogo from './assets/auth-logo.svg'
 import p1 from './assets/p1.jpg'
 import p2 from './assets/p2.jpg'
 import p3 from './assets/p3.jpg'
@@ -44,22 +41,15 @@ function LandingPage(){
       <div className="flex-1 px-16">
         <h1 className="text-4xl font-bold leading-[1.4]">
           신촌의 사람과<br/>
-          기회를 <span className="text-[#6FC2B4]">ON</span>하다
+          기회를 <span className="text-[#DBBEA6]">ON</span>하다
         </h1>
       </div>
       <div className="flex flex-1 flex-col items-center gap-8 px-16">
-        <div className="flex items-center text-4xl font-extrabold">
-          <span className="text-[#7D5C42]">신촌</span>
-          <span className="relative mx-1 text-[#6FC2B4]">
-            O
-            <span className="absolute -top-2 left-1/2 size-2 -translate-x-1/2 rounded-full bg-[#6FC2B4]"></span>
-          </span>
-          <span className="text-[#6FC2B4]">N</span>
-        </div>
+        <img src={authLogo} alt="신촌ON" className="h-12 w-auto object-contain"/>
         <button
           type="button"
           onClick={()=>{ window.location.href = '/home' }}
-          className="w-64 rounded-lg bg-[#F8F2ED] py-3 text-sm font-medium text-[#7D5C42]"
+          className="w-64 rounded-lg bg-[#F8F2ED] py-3 text-sm font-medium text-[#DBBEA6]"
         >
           학교 이메일 로그인
         </button>
@@ -70,15 +60,13 @@ function LandingPage(){
 }
 function App(){
   const path = window.location.pathname
-<<<<<<< HEAD
-  if(path === '/groups') return <GroupFeedPage />
-  if(path === '/networking') return <NetworkingPage />
-  if(path === '/home') return <HomeApp />
-  return <LandingPage />
-=======
 
   if (path === '/signup' || path === '/onboarding') {
     return <AuthPage />
+  }
+
+  if (path === '/home') {
+    return <HomeApp />
   }
 
   if (path === '/groups/new') {
@@ -109,7 +97,6 @@ function App(){
     return <MyPage />
   }
 
-  return <HomeApp />
->>>>>>> ed91b3b9cb7c6f8a9f87fcac271871baf6e41e85
+  return <LandingPage />
 }
 export default App
