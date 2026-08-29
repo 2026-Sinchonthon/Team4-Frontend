@@ -16,7 +16,7 @@ export function LoginPage(){
         </div>
         <button
           type="button"
-          onClick={()=>{ window.location.href='/login/email' }}
+          onClick={()=>{ window.location.href='/signup' }}
           className="w-[260px] rounded-lg bg-[#E7DDD3] px-6 py-3 text-sm font-semibold text-[#5B4530]"
         >
           학교 이메일 로그인

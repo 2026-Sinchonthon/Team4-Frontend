@@ -1,4 +1,4 @@
-const API_BASE_URL = (import.meta.env.VITE_API_BASE_URL ?? '').replace(/\/$/, '')
+const API_BASE_URL = (import.meta.env.VITE_API_BASE_URL ?? 'http://43.203.7.238:8080').replace(/\/$/, '')
 
 export class ApiError extends Error {
   constructor(message, status, data) {
@@ -11,6 +11,19 @@ export class ApiError extends Error {
 
 function getAccessToken() {
   return localStorage.getItem('accessToken')
+}
+
+export function setAccessToken(token) {
+  if (token) localStorage.setItem('accessToken', token)
+  else localStorage.removeItem('accessToken')
+}
+
+export function unwrapResponse(response) {
+  if (response && typeof response === 'object' && 'success' in response) {
+    if (!response.success) throw new ApiError(response.message || '요청에 실패했습니다.', response.code, response)
+    return response.data
+  }
+  return response
 }
 
 export async function apiRequest(path, options = {}) {
@@ -40,5 +53,5 @@ export async function apiRequest(path, options = {}) {
     throw new ApiError(message, response.status, data)
   }
 
-  return data
+  return unwrapResponse(data)
 }

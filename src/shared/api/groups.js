@@ -42,4 +42,7 @@ export const groupsApi = {
   reject(groupId, memberId) {
     return apiRequest(`/api/groups/${groupId}/members/${memberId}/reject`, { method: 'PATCH' })
   },
+  categories() { return apiRequest('/api/group-categories') },
+  mine() { return apiRequest('/api/groups/me') },
+  remove(groupId) { return apiRequest(`/api/groups/${groupId}`, { method: 'DELETE' }) },
 }
