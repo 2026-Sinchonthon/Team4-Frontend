@@ -12,7 +12,7 @@ const labelClass = 'block text-sm font-semibold text-[#545454]'
 function AuthShell({ eyebrow, title, description, children, wide = false }) {
   return <main className="min-h-screen bg-white px-7 py-12 font-['Pretendard','Apple_SD_Gothic_Neo',sans-serif] text-[#171617]">
     <div className={`mx-auto min-h-[calc(100vh-6rem)] items-center ${wide ? 'flex max-w-[720px] justify-center' : 'grid max-w-[1230px] grid-cols-[1fr_520px] gap-20'}`}>
-      {!wide && <section className="hidden lg:block"><p className="text-[64px] font-bold leading-[1.2] tracking-[-1.4px]"><span className="text-[#7D5C42]">학교</span>는 달라도,<br />신촌에서는 <span className="text-[#7D5C42]">우리</span></p><p className="mt-8 max-w-lg text-lg leading-[1.6] text-[#858485]">신촌의 대학생이 학교의 경계를 넘어 함께 배우고, 만들고, 연결되는 공간입니다.</p></section>}
+      {!wide && <section className="hidden lg:block"><p className="text-[64px] font-bold leading-[1.2] tracking-[-1.4px]"><span className="text-[#7D5C42]">신촌</span>의 사람과<br />기회를 <span className="text-[#7D5C42]">ON</span>하다</p><p className="mt-8 max-w-lg text-lg leading-[1.6] text-[#858485]">신촌의 대학생이 학교의 경계를 넘어 함께 배우고, 만들고, 연결되는 공간입니다.</p></section>}
       <section className="w-full rounded-[24px] border border-[#F4F4F4] bg-white px-12 py-10 shadow-[0_18px_50px_rgba(125,92,66,0.08)]">
         <img className="h-auto w-[220px]" src={authLogo} alt="신촌ON" />
         {eyebrow && <p className="mt-10 text-sm font-semibold text-[#7D5C42]">{eyebrow}</p>}
