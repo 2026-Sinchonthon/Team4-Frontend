@@ -18,6 +18,9 @@ import s4 from './assets/s4.jpg'
 import s5 from './assets/s5.jpg'
 const navItems=[{label:'홈',href:'/',icon:<img src={homeIcon} alt=""/>,isActive:true},{label:'모임 피드',href:'/groups',icon:<img src={groupFeedIcon} alt=""/>},{label:'네트워킹',href:'/networking',icon:<img src={networkingIcon} alt=""/>},{label:'마이 페이지',href:'/mypage',icon:<img src={mypageIcon} alt=""/>}]
 const members=['연세대 외 2명','서강대 외 3명','홍익대 외 3명']
+const rowImages=[p1,p2,p3,p4,s1,s2,s3,s4,s5]
+const pImages=[s1,s2,s3]
+const joinedImages=[s4,s5]
 const Arrow=()=> <span className="text-3xl font-light text-[#858485]">›</span>
 function Card({title,children,href}){return <section className="rounded-[20px] border border-[#F4F4F4] bg-white px-10 py-5"><header className="mb-6 flex justify-between"><h2 className="text-xl font-bold">{title}</h2>{href?<a href={href} aria-label={title+' 더 보기'}><Arrow/></a>:<button type="button" aria-label={title+' 더 보기'}><Arrow/></button>}</header>{children}</section>}
 function Row({member,event=false,href}){return <article className="flex items-center gap-6 border-b border-[#F4F4F4] py-3 last:border-0"><img src={s2} alt="" className="size-[60px] shrink-0 rounded-2xl object-cover"/><div className="flex-1">{event&&<span className="mr-1 rounded-full bg-[#F8F2ED] px-4 py-1 text-xs text-[#7D5C42]">커피챗</span>}<b className="text-sm">Spring boot 스터디</b><p className="mt-2 text-xs text-[#858485]">프로젝트 | {member}</p></div>{href?<a className="rounded-lg px-5 py-2 text-sm font-semibold text-[#858485]" href={href}>상세 보기</a>:<button className="rounded-lg bg-[#7D5C42] px-5 py-2 text-sm text-white">참여하기</button>}</article>}
