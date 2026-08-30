@@ -17,7 +17,7 @@ import s4 from '../../assets/s4.jpg'
 import s5 from '../../assets/s5.jpg'
 import pp1 from '../../assets/pp1.jpg'
 
-const navItems=[{label:'홈',href:'/',icon:<img src={homeIcon} alt=""/>},{label:'모임 피드',href:'/groups',icon:<img src={groupFeedIcon} alt=""/>},{label:'네트워킹',href:'/networking',icon:<img src={networkingIcon} alt=""/>,isActive:true},{label:'마이 페이지',href:'/mypage',icon:<img src={mypageIcon} alt=""/>}]
+const navItems=[{label:'홈',href:'/home',icon:<img src={homeIcon} alt=""/>},{label:'모임 피드',href:'/groups',icon:<img src={groupFeedIcon} alt=""/>},{label:'네트워킹',href:'/networking',icon:<img src={networkingIcon} alt=""/>,isActive:true},{label:'마이 페이지',href:'/mypage',icon:<img src={mypageIcon} alt=""/>}]
 
 const pImages=[p1,p2,p3,p4]
 const sImages=[s1,s2,s3,s4,s5]

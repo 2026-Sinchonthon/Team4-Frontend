@@ -17,7 +17,7 @@ import groupMax from "../assets/group-max.svg";
 import groupCurrent from "../assets/group-current.svg";
 
 const navItems = [
-  { label: "홈", href: "/", icon: <img src={homeIcon} alt="" /> },
+  { label: "홈", href: "/home", icon: <img src={homeIcon} alt="" /> },
   {
     label: "모임 피드",
     href: "/groups",

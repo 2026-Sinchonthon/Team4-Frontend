@@ -8,7 +8,7 @@ import networkingIcon from '../assets/navigation/networking.svg'
 import mypageIcon from '../assets/navigation/mypage.svg'
 
 const navItems=[
- {label:'홈',href:'/',icon:<img src={homeIcon} alt=""/>},
+ {label:'홈',href:'/home',icon:<img src={homeIcon} alt=""/>},
  {label:'모임 피드',href:'/groups',icon:<img src={groupFeedIcon} alt=""/>,isActive:true},
  {label:'네트워킹',href:'/networking',icon:<img src={networkingIcon} alt=""/>},
  {label:'마이 페이지',href:'/mypage',icon:<img src={mypageIcon} alt=""/>},
